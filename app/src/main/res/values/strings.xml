@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Compass</string>
-    <string name="compass_arrow">Compass arrow</string>
+    <string name="compass_needle">Compass needle</string>
+    <string name="set_destination_button">Set destination</string>
+    <string name="set">Set</string>
+    <string name="cancel">Cancel</string>
+    <string name="latitude">Latitude</string>
+    <string name="compass_face">Compass face</string>
 </resources>

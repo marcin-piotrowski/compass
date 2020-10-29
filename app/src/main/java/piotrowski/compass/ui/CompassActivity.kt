@@ -11,7 +11,7 @@ import piotrowski.compass.databinding.ActivityCompassBinding
 private val TAG = CompassActivity::class.java.simpleName
 
 @AndroidEntryPoint
-class CompassActivity : AppCompatActivity() {
+class CompassActivity : AppCompatActivity(), DestinationInputDialog.Listener {
 
     private val viewModel: CompassViewModel by viewModels()
     private val binding: ActivityCompassBinding by lazy {
@@ -20,7 +20,10 @@ class CompassActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
+        with(binding) {
+            setContentView(root)
+            setDestinationButton.setOnClickListener { openDestinationDialog() }
+        }
 
         viewModel.northAzimuth.observe(this, ::displayNewAzimuth)
     }
@@ -51,5 +54,13 @@ class CompassActivity : AppCompatActivity() {
         viewModel.currentAzimuth = azimuth
 
         binding.compassNeedle.startAnimation(animation)
+    }
+
+    private fun openDestinationDialog() {
+        DestinationInputDialog(this).show(supportFragmentManager, "DestinationInputDialog")
+    }
+
+    override fun onDestinationSet(latitude: Double, longitude: Double) {
+
     }
 }
