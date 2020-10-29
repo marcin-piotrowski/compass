@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.location.Location;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.WindowManager;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
@@ -16,7 +17,7 @@ import piotrowski.compass.databinding.DialogDestinationInputBinding;
 public class DestinationInputDialog extends DialogFragment {
 
     interface Listener {
-        void onDestinationSet(double latitude, double longitude);
+        void onDestinationChoose(@NotNull Location location);
     }
 
     DestinationInputDialog(Listener listener) {
@@ -34,20 +35,27 @@ public class DestinationInputDialog extends DialogFragment {
 
         builder
                 .setView(binding.getRoot())
-                .setPositiveButton(R.string.set, (dialog, id) -> {
-                    String latitude = String.valueOf(binding.latitudeDegrees) + ':'
-                            + binding.latitudeMinutes + ':'
-                            + binding.latitudeSeconds;
-                    String longitude = String.valueOf(binding.longitudeDegrees) + ':'
-                            + binding.longitudeMinutes + ':'
-                            + binding.longitudeSeconds;
+                .setPositiveButton(R.string.ok, (dialog, id) -> {
+                    String latitude = String.valueOf(binding.latitudeDegreesEditText.getText()) + ':'
+                            + binding.latitudeMinutesEditText.getText() + ':'
+                            + binding.latitudeSecondsEditText.getText();
+                    String longitude = String.valueOf(binding.longitudeDegreesEditText.getText()) + ':'
+                            + binding.longitudeMinutesEditText.getText() + ':'
+                            + binding.longitudeSecondsEditText.getText();
 
-                    listener.onDestinationSet(Location.convert(latitude), Location.convert(longitude));
-                    DestinationInputDialog.this.getDialog().cancel();
+                    Location destination = new Location("");
+                    destination.setLatitude(Location.convert(latitude));
+                    destination.setLongitude(Location.convert(longitude));
+
+                    listener.onDestinationChoose(destination);
                 })
                 .setNegativeButton(R.string.cancel, (dialog, id) ->
                         DestinationInputDialog.this.getDialog().cancel());
 
-        return builder.create();
+        binding.latitudeDegreesEditText.requestFocus();
+        Dialog dialog = builder.create();
+        dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+
+        return dialog;
     }
 }
