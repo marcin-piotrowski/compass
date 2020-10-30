@@ -13,17 +13,19 @@
             android:id="@+id/distance_text"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
+            style="@style/TextLabelRounded"
             android:text="@string/distance_to_na"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
         <ImageView
-            android:id="@+id/compass_needle"
+            android:id="@+id/direction_arrow"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="16dp"
-            android:src="@drawable/ic_compass_needle"
+            android:visibility="gone"
+            android:src="@drawable/ic_direction_arrow"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
@@ -32,26 +34,25 @@
             android:contentDescription="@string/compass_needle" />
 
         <ImageView
-            android:id="@+id/compass_face"
+            android:id="@+id/compass_rose"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:src="@drawable/ic_compass_face"
+            android:padding="16dp"
+            android:src="@drawable/compass_rose"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/compass_face" />
+            android:contentDescription="@string/compass_needle" />
 
         <Button
             android:id="@+id/set_destination_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/colorPrimaryDark"
             android:layout_marginBottom="16dp"
             android:text="@string/set_destination_button"
             app:layout_constraintBottom_toBottomOf="parent"
