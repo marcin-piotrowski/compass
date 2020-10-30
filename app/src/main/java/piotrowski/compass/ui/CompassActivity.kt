@@ -186,6 +186,7 @@ class CompassActivity : AppCompatActivity(), DestinationInputDialog.Listener {
     }
 
     override fun onDestinationChoose(location: Location) {
+        binding.disclaimerText.visibility = View.VISIBLE
         viewModel.destination = location
     }
 
