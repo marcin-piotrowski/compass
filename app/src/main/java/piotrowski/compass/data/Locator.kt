@@ -48,6 +48,6 @@ class Locator
             priority = LocationRequest.PRIORITY_HIGH_ACCURACY
         }
 
-        private const val LOCATION_REQUEST_FREQUENCY = 1000L
+        const val LOCATION_REQUEST_FREQUENCY = 1000L
     }
 }

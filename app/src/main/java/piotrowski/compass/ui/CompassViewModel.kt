@@ -23,6 +23,9 @@ class CompassViewModel
     var currentAzimuth: Float = 0f
     val northAzimuth: LiveData<Float>
         get() = _northAzimuth
+    var currentDestinationAzimuth: Float = 0f
+    val destinationAzimuth: LiveData<Float>
+        get() = _destinationAzimuth
 
     var destination: Location? = null
         set(value) {
@@ -36,6 +39,7 @@ class CompassViewModel
         get() = _distanceToDestination
 
     private val _northAzimuth = MutableLiveData<Float>()
+    private val _destinationAzimuth = MutableLiveData<Float>()
     private val _distanceToDestination = MutableLiveData<Float>()
     private var compassJob: Job? = null
     private var locatorJob: Job? = null
@@ -66,6 +70,7 @@ class CompassViewModel
         locatorJob = viewModelScope.launch(IO) {
             locator.locationFlow.collect {
                 _distanceToDestination.postValue(destination?.distanceTo(it))
+                _destinationAzimuth.postValue(it.bearingTo(destination))
             }
         }
     }

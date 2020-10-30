@@ -6,6 +6,7 @@ import android.content.IntentSender
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
+import android.view.View
 import android.view.animation.Animation
 import android.view.animation.RotateAnimation
 import androidx.activity.viewModels
@@ -42,7 +43,9 @@ class CompassActivity : AppCompatActivity(), DestinationInputDialog.Listener {
         }
 
         with(viewModel) {
-            northAzimuth.observe(this@CompassActivity, ::adjustCompassNeedle)
+            northAzimuth.observe(this@CompassActivity, ::adjustCompassRose)
+            destinationAzimuth.observe(this@CompassActivity, ::adjustDestinationArrow)
+
             distanceToDestination.observe(this@CompassActivity) {
                 binding.distanceText.text = getString(R.string.distance_to, it.roundToInt())
             }
@@ -59,7 +62,7 @@ class CompassActivity : AppCompatActivity(), DestinationInputDialog.Listener {
         viewModel.onStop()
     }
 
-    private fun adjustCompassNeedle(azimuth: Float) {
+    private fun adjustCompassRose(azimuth: Float) {
         val animation = RotateAnimation(
             -viewModel.currentAzimuth, -azimuth,
             Animation.RELATIVE_TO_SELF, 0.5f,
@@ -72,7 +75,24 @@ class CompassActivity : AppCompatActivity(), DestinationInputDialog.Listener {
 
         viewModel.currentAzimuth = azimuth
 
-        binding.compassNeedle.startAnimation(animation)
+        binding.compassRose.startAnimation(animation)
+    }
+
+    private fun adjustDestinationArrow(azimuth: Float) {
+        binding.directionArrow.visibility = View.VISIBLE
+        val animation = RotateAnimation(
+            -viewModel.currentDestinationAzimuth, -azimuth,
+            Animation.RELATIVE_TO_SELF, 0.5f,
+            Animation.RELATIVE_TO_SELF, 0.5f
+        ).apply {
+            duration = Locator.LOCATION_REQUEST_FREQUENCY
+            repeatCount = 0
+            fillAfter = true
+        }
+
+        viewModel.currentDestinationAzimuth = azimuth
+
+        binding.directionArrow.startAnimation(animation)
     }
 
     private fun processLocationPermission() {

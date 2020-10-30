@@ -29,7 +29,7 @@
                 android:id="@+id/latitude_degrees_edit_text"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+                android:inputType="numberSigned"
                 android:nextFocusDown="@+id/latitude_minutes_edit_text"
                 android:maxLength="3"
                 android:text="0" />
@@ -61,7 +61,7 @@
                 android:id="@+id/latitude_seconds_edit_text"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:nextFocusDown="@+id/longitude_degrees_edit_text"
                 android:maxLength="2"
                 android:text="0" />
@@ -97,7 +97,7 @@
                 android:layout_width="50dp"
                 android:nextFocusDown="@+id/longitude_minutes_edit_text"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+                android:inputType="numberSigned"
                 android:maxLength="3"
                 android:text="0" />
 
@@ -128,7 +128,7 @@
                 android:id="@+id/longitude_seconds_edit_text"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:maxLength="2"
                 android:text="0" />
 
