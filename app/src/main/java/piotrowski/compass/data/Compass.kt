@@ -9,13 +9,10 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-
 class Compass
 @Inject constructor(
     private val sensorManager: SensorManager
 ) {
-
-    var azimuthEmittingFrequency: Long = 1000
     val azimuthFlow: Flow<Float> = flow {
         sensorManager.registerListener(
             sensorEventListener, gsensor,
@@ -28,7 +25,7 @@ class Compass
 
         while (true) {
             emit(azimuth)
-            delay(azimuthEmittingFrequency)
+            delay(AZIMUTH_REQUEST_FREQUENCY)
         }
     }
 
@@ -67,12 +64,16 @@ class Compass
             if (success) {
                 val orientation = FloatArray(3)
                 SensorManager.getOrientation(R, orientation)
-                azimuth = Math.toDegrees(orientation[0].toDouble()).toFloat() // orientation
+                azimuth = Math.toDegrees(orientation[0].toDouble()).toFloat()
                 azimuth = (azimuth + 360) % 360
             }
         }
 
         //no-ops
         override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) = Unit
+    }
+
+    companion object {
+        var AZIMUTH_REQUEST_FREQUENCY: Long = 300L
     }
 }
