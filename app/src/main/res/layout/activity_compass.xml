@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.CompassActivity">
+
+        <TextView
+            android:layout_marginTop="16dp"
+            android:id="@+id/distance_text"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            style="@style/TextLabelRounded"
+            android:text="@string/distance_to_na"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:layout_marginTop="16dp"
+            android:id="@+id/disclaimer_text"
+            android:layout_width="wrap_content"
+            android:visibility="gone"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="@string/disclaimer"
+            app:layout_constraintTop_toBottomOf="@+id/distance_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageView
+            android:id="@+id/direction_arrow"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="16dp"
+            android:visibility="gone"
+            android:src="@drawable/ic_direction_arrow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/compass_needle" />
+
+        <ImageView
+            android:id="@+id/compass_rose"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="16dp"
+            android:padding="16dp"
+            android:src="@drawable/compass_rose"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/compass_needle" />
+
+        <Button
+            android:id="@+id/set_destination_button"
+            android:layout_width="wrap_content"
+            android:padding="24dp"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:layout_marginBottom="16dp"
+            android:text="@string/set_destination_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

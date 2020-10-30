@@ -1,4 +1,15 @@
 <resources>
     <string name="app_name">Compass</string>
-    <string name="compass_arrow">Compass arrow</string>
+    <string name="compass_needle">Compass needle</string>
+    <string name="set_destination_button">Set destination</string>
+    <string name="cancel">Cancel</string>
+    <string name="latitude">Latitude</string>
+    <string name="compass_face">Compass face</string>
+    <string name="location_danied_rationale">The destination cannot be used till location permission will be granted</string>
+    <string name="longitude">Longitude</string>
+    <string name="ok">OK</string>
+    <string name="location_settings_off_rationale">Please turn on localization to set destination</string>
+    <string name="distance_to_na">Distance from the destination: n/a</string>
+    <string name="distance_to">Distance from the destination: %1$dm</string>
+    <string name="disclaimer">Red arm pointing North \nGreen arrow pointing destination</string>
 </resources>
