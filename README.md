@@ -1,1 +1,1 @@
-comppas1
+Simpel compass app
