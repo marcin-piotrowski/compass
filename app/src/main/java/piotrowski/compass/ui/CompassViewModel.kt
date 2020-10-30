@@ -70,7 +70,7 @@ class CompassViewModel
         locatorJob = viewModelScope.launch(IO) {
             locator.locationFlow.collect {
                 _distanceToDestination.postValue(destination?.distanceTo(it))
-                _destinationAzimuth.postValue(it.bearingTo(destination))
+                _destinationAzimuth.postValue(it.bearingTo(destination) + currentAzimuth)
             }
         }
     }
