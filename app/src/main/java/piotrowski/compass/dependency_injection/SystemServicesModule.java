@@ -3,6 +3,9 @@ package piotrowski.compass.dependency_injection;
 import android.content.Context;
 import android.hardware.SensorManager;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+
 import dagger.Module;
 import dagger.Provides;
 import dagger.hilt.InstallIn;
@@ -18,5 +21,12 @@ public class SystemServicesModule {
             @ApplicationContext Context context
     ) {
         return (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
+    }
+
+    @Provides
+    public static FusedLocationProviderClient provideLocationProvider(
+            @ApplicationContext Context context
+    ) {
+        return LocationServices.getFusedLocationProviderClient(context);
     }
 }
